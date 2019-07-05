@@ -1,0 +1,24 @@
+{
+  "name": "fruitful-api-client",
+  "version": "1.0.0",
+  "description": "Javascript SDK for connecting Fruitful API",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fruitfulfertility/fruitful-api-client.git"
+  },
+  "author": "Brad Ash",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/fruitfulfertility/fruitful-api-client/issues"
+  },
+  "homepage": "https://github.com/fruitfulfertility/fruitful-api-client#readme",
+  "dependencies": {
+    "axios": "^0.19.0",
+    "dotenv": "^8.0.0",
+    "jsonwebtoken": "^8.5.1"
+  }
+}
