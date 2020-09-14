@@ -2,23 +2,97 @@
   "name": "fruitful-api-client",
   "version": "1.0.0",
   "description": "Javascript SDK for connecting Fruitful API",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "main": "lib",
+  "types": "lib/",
+  "engines": {
+    "node": ">=10.0"
   },
+  "author": {
+    "name": "Brad Ash",
+    "email": "bradley.ash@gmail.com"
+  },
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/fruitfulfertility/fruitful-api-client.git"
   },
-  "author": "Brad Ash",
-  "license": "MIT",
   "bugs": {
     "url": "https://github.com/fruitfulfertility/fruitful-api-client/issues"
   },
   "homepage": "https://github.com/fruitfulfertility/fruitful-api-client#readme",
+  "keywords": [
+    "api",
+    "axios"
+  ],
+  "bundleDependencies": [],
+  "scripts": {
+    "alex": "alex .",
+    "changelog": "npx auto-changelog -p --commit-limit false --unreleased --template keepachangelog",
+    "changelog:commit": "npm run changelog && git add CHANGELOG.md && git commit -m \"chore(changelog): Updated changelog\"",
+    "build": "rimraf ./lib && tsc",
+    "coverage": "nyc npm run test",
+    "lint": "tsc --noEmit && eslint 'src/**/*.{js,ts,tsx}' 'test/**/*.{js,ts,tsx}' --fix",
+    "test": "npm run lint && clear && mocha \"test/**/*.ts\" --recursive --exit",
+    "eslint-check": "eslint --print-config .eslintrc | eslint-config-prettier-check",
+    "prettier": "prettier --write \"{src,test}/**/*.js\"",
+    "prettier:docs": "prettier-markdown README.md docs/*",
+    "release": "release-it",
+    "release:patch": "release-it --ci patch",
+    "release:minor": "release-it --ci minor",
+    "release:major": "release-it --ci major",
+    "release:dry-run": "release-it --dry-run",
+    "release:github-only": "release-it --no-npm.publish"
+  },
+  "lint-staged": {
+    "*.{js,ts,tsx}": [
+      "eslint --fix"
+    ],
+    "*.{js,css,md}": "prettier --write"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "tsc --noEmit && lint-staged"
+    }
+  },
+  "files": [
+    "lib"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
   "dependencies": {
     "axios": "^0.19.0",
-    "dotenv": "^8.0.0",
-    "jsonwebtoken": "^8.5.1"
+    "dotenv": "^8.2.0",
+    "json-bigint": "^1.0.0",
+    "jsonwebtoken": "^8.5.1",
+    "path": "^0.12.7"
+  },
+  "devDependencies": {
+    "@types/config": "^0.0.36",
+    "@types/debug": "^4.1.5",
+    "@types/expect": "^24.3.0",
+    "@types/json-bigint": "^1.0.0",
+    "@types/jsonwebtoken": "^8.5.0",
+    "@types/lodash": "^4.14.149",
+    "@types/node": "^14.10.1",
+    "@typescript-eslint/eslint-plugin": "^2.18.0",
+    "@typescript-eslint/parser": "^2.18.0",
+    "alex": "^8.1.1",
+    "auto-changelog": "^1.16.2",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.9.0",
+    "eslint-plugin-import": "^2.20.0",
+    "eslint-plugin-markdown": "^1.0.0",
+    "eslint-plugin-prettier": "^3.1.2",
+    "esm": "^3.2.25",
+    "husky": "^4.2.1",
+    "lint-staged": "^10.0.2",
+    "prettier": "^1.19.1",
+    "prettier-markdown": "^0.1.8",
+    "progress": "^2.0.3",
+    "release-it": "^12.6.1",
+    "rimraf": "^3.0.0",
+    "ts-node": "^8.6.2",
+    "typescript": "^4.0.2"
   }
 }
